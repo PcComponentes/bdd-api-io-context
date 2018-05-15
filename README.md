@@ -41,16 +41,14 @@ Scenario: Create a product
 ```
 ```gherkin    
 #GET
-Scenario: Find an existing family
+Scenario: Find an existing product
     When I send a GET request to "/products/73118479-28a6-401e-9dad-6c88eac17484"
     Then the response status code should be 200
     And the response content should be:
     """
     {
-      "id": "15dcd91e-4f29-4975-ac7c-560915af5b62",
-      "name": "Family for search",
-      "packaging_type": "VOLUMETRIC",
-      "serial_number_required": true
+      "id": "73118479-28a6-401e-9dad-6c88eac17484",
+      "name": "fake product"
     }
     """
 ```
