@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaron
- * Date: 15/05/18
- * Time: 8:57
- */
 
 namespace Pccomponentes\BddApiIOContext\Infrastructure\Mink;
 
