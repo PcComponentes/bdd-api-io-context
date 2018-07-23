@@ -8,7 +8,6 @@
 
 namespace Pccomponentes\BddApiIOContext\Infrastructure\Mink;
 
-use Behat\Gherkin\Node\PyStringNode;
 use Symfony\Component\DomCrawler\Crawler;
 
 class MinkSessionRequestAdapter
@@ -20,9 +19,9 @@ class MinkSessionRequestAdapter
         $this->minkIOAdapter = $minkIOAdapter;
     }
 
-    public function sendRequestWithPyStringNode(string $method, string $url, PyStringNode $body)
+    public function sendRequestWithPyStringNode(string $method, string $url, array $optionalParams = [])
     {
-        $this->request($method, $url, ['content' => $body->getRaw()]);
+        $this->request($method, $url, $optionalParams);
     }
 
     public function sendRequest($method, $url, array $optionalParams = [])
