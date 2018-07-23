@@ -13,6 +13,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Pccomponentes\BddApiIOContext\Infrastructure\Mink\MinkSessionAdapter;
 use Pccomponentes\BddApiIOContext\Infrastructure\Mink\MinkSessionResponseAdapter;
 use PHPUnit\Framework\Assert;
+use Swaggest\JsonSchema\Schema;
 
 class ApiResponseContext extends ApiIOContext implements Context
 {
@@ -44,6 +45,14 @@ class ApiResponseContext extends ApiIOContext implements Context
     public function theResponseContentShouldBe(PyStringNode $expected)
     {
         Assert::assertJsonStringEqualsJsonString($expected->getRaw(), $this->getSessionResponseHelper()->getResponse());
+    }
+
+    /**
+     * @Then the response content should be validated by schema:
+     */
+    public function theResponseContentShouldBeValidatedBySchema(PyStringNode $rawSchema)
+    {
+        Schema::import(json_decode($rawSchema))->in(json_decode($this->getSessionResponseHelper()->getResponse()));
     }
 
     private function getSessionResponseHelper(): MinkSessionResponseAdapter
